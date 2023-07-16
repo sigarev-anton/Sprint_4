@@ -94,8 +94,8 @@ public class OrderPage {
     }
     public String resultMessage()
     {
-        String checkFinalText = driver.findElement(By.xpath(".//div[@class='Order_Text__2broi']")).getText();
-        return checkFinalText;
+        return driver.findElement(By.xpath(".//div[@class='Order_Text__2broi']")).getText();
+
     }
 
 }

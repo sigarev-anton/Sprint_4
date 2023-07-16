@@ -1,4 +1,3 @@
-import org.junit.After;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 import org.junit.Test;
@@ -11,16 +10,15 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
-public class Tests {
+public class OrderPageTests {
     String name;
     String surname;
     String address;
     String phoneNumber;
     String comment;
     String date;
-    String finalMessage;
 
-    public Tests(String name, String surname, String address, String phoneNumber, String comment, String date) {
+    public OrderPageTests(String name, String surname, String address, String phoneNumber, String comment, String date) {
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -43,15 +41,6 @@ public class Tests {
 
 
     WebDriver driver = new FirefoxDriver();
-    @Test
-    public void checkMainPage() {
-
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-        MainPage objMainpage = new MainPage(driver);
-        objMainpage.acceptCookie();
-        assertTrue(objMainpage.checkAccordionPanel());
-
-    }
 
 
     @Test
@@ -64,12 +53,6 @@ public class Tests {
         assertThat(objOrderPage.resultMessage(), containsString("Номер заказа"));
 
     }
-
-    //@After
-    //public void teardown() {
-    // Закрой браузер
-    //  driver.quit();
-    //}
 
 }
 

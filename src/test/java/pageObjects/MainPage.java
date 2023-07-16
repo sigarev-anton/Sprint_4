@@ -22,31 +22,23 @@ public class MainPage {
     public void acceptCookie() {
         driver.findElement(By.id("rcc-confirm-button")).click();
     }
-    public boolean checkAccordionPanel()
+    public void scrollToAccordionPanel()
     {
         Duration duration = Duration.ofSeconds(5);
         new WebDriverWait(driver, duration).until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("accordion__heading-0"))));
-        boolean checkingResult = true;
         WebElement element = driver.findElement(By.id("accordion__heading-7"));
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-        duration = Duration.ofSeconds(3);
-        new WebDriverWait(driver, duration);
-        for (int i = 0; i < 8; i++)
-        {
-            driver.findElement(By.id("accordion__heading-"+i)).click();
-            new WebDriverWait(driver, duration);
-            if (!driver.findElement(By.id("accordion__panel-"+i)).isDisplayed())
-            {
-                checkingResult = false;
-            }
-        }
-        return checkingResult;
     }
-    //public  void moveToOrderPage() {
-    //  driver.findElement(By.className("Button_Button__ra12g")).click();
-    //Duration duration = Duration.ofSeconds(5);
-    //new WebDriverWait(driver, duration).until(ExpectedConditions.elementToBeClickable(driver.findElement(By.className("Button_Middle__1CSJM"))));
+    public String getAccordeonText (int i)
+    {
+        Duration duration = Duration.ofSeconds(2);
+        driver.findElement(By.id("accordion__heading-"+i)).click();
+        new WebDriverWait(driver, duration);
+        return driver.findElement(By.xpath(".//div[@id='accordion__panel-"+i+"']/p")).getText();
+    }
 
-    //}
+
+
+
 
 }
