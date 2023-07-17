@@ -6,8 +6,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import pageObjects.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.After;
 
-import static org.junit.Assert.*;
+
 
 @RunWith(Parameterized.class)
 public class OrderPageTests {
@@ -31,7 +32,7 @@ public class OrderPageTests {
 
     @Parameterized.Parameters
     public static Object[][] getPersonInformation() {
-        return new Object[][]{//Сгенерируй тестовые данные (нам нужно название городов и результат поиска)
+        return new Object[][]{
                 {"Котик", "Котиков", "Городской округ Котово", "79829999999", "21.01.2024", "я сам не могу, у меня лапки"},
                 {"Собака", "Псовна", "Городской округ Чертаново", "79826667788", "21.06.2026", "вуф вуф"},
 
@@ -53,6 +54,10 @@ public class OrderPageTests {
         assertThat(objOrderPage.resultMessage(), containsString("Номер заказа"));
 
     }
-
+    @After
+    public void teardown() {
+        driver.quit();
+    }
 }
+
 

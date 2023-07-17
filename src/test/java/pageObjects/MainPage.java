@@ -29,6 +29,14 @@ public class MainPage {
         WebElement element = driver.findElement(By.id("accordion__heading-7"));
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
     }
+
+    public void waitForAccoardeonPannelToBeClickable(int i){
+        Duration duration = Duration.ofMinutes(1);
+        new WebDriverWait(driver, duration)
+                .until(ExpectedConditions.elementToBeClickable(By.id("accordion__heading-"+i)));
+    }
+    //Ждем пока самокат перестанет закрывать кнопку для раскрытия списка
+
     public String getAccordeonText (int i)
     {
         Duration duration = Duration.ofSeconds(2);
